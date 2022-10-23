@@ -1,0 +1,74 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %}
+<!--Breadcrumb Area start-->
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.image.url}}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Blog {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="#">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} Blog {% endblock breadcrumb_name %}</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}{% endfor %}{% endfor %}
+<!--Breadcrumb Area ends-->
+<!-- Blog section Starts-->
+<section class="blog-section style1 mar-top-15">
+    <div class="container">
+        <div class="row">
+            {% for blog in blogs %}{% for img in blog.blog_image.all %}{% if img.is_lead %}
+            <div class="col-md-6 mar-bot-30">
+                <div class="single-blog-item style1 text-center">
+                    <div class="blog-img mar-bot-30">
+                        <img src="{{img.image.url}}" alt="Image">
+                    </div>
+                    <p>{{blog.category}} / <span>{{blog.created_at}}</span></p>
+                    <h3><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></h3>
+                </div>
+            </div>
+            {% endif %}{% endfor %}{% endfor %}
+        </div>
+        <!--pagination starts-->
+        <div class="post-nav nav-res">
+            <div class="row">
+                <div class="col-md-4  col-xs-12">
+                    <div class="page-prev">
+                        <a href="#"><span>Previous Page</span></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 ">
+                    <div class="page-num text-center">
+                        <ul>
+                            <li class="active"><span>1</span></li>
+                            <li><span><a href="#">2</a></span></li>
+                            <li><span><a href="#">3</a></span></li>
+                            <li><span><a href="#">4</a></span></li>
+                            <li><span><a href="#">5</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 text-left">
+                    <div class="page-next">
+                        <a href="#"><span>Next Page</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--pagination ends-->
+    </div>
+</section>
+<!-- Blog section Ends-->
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: none;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

@@ -1,0 +1,37 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %} {% include 'printshop/breadcrumb.html' %}
+<!--Order tracking section starts-->
+<section class="order-track-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h3>Order Tracking</h3>
+            </div>
+            <div class="col-md-8 offset-md-2">
+                <div class="order-track-text text-center">
+                    <p>To track your order please enter your order ID in the box below and press the 'Track' button. This was given to you on your receipt and in the confirmation email you should have received</p>
+                </div>
+                <div class="order-tracking-form">
+                    <form class="row calculate-shipping mar-top-40">
+                        <div class="col-sm-12">
+                            <label class="text-black text-left">Order ID</label>
+                            <input class="form-control" type="text" name="order-Id" placeholder="Found in your order confirmation email">
+                        </div>
+                        <div class="col-sm-12">
+                            <label class="text-black text-left">Email</label>
+                            <input class="form-control" type="text" name="email" placeholder="email you used during checkout">
+                        </div>
+                        <div class="col-sm-12">
+                            <a href="#" class="button style1">Track</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--Order tracking section ends-->
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: inline;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

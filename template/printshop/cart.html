@@ -1,0 +1,99 @@
+{% extends "printshop/base.html" %} {% load static %} {% block title %}Cart{% endblock title %} {% block content %}
+<!--Breadcrumb Area start-->
+<div class="breadcrumb-section bg-s" style="background-image: url('{% static '/img/bg/header/4.jpg' %}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Cart {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="#">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} Cart {% endblock breadcrumb_name %}</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Breadcrumb Area ends-->
+<!--Shop cart starts-->
+<section class="shop-cart-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-content table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="plantmore-product-thumbnail">Images</th>
+                                <th class="cart-product-name">Product</th>
+                                <th class="plantmore-product-price"></th>
+                                <th class="plantmore-product-quantity">Quantity</th>
+                                <th class="plantmore-product-quantity">Update Cart</th>
+                                <th class="plantmore-product-subtotal">Unit Price</th>
+                                <th class="plantmore-product-remove">Remove</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %} {% with product=item.product %}
+                            <tr data-index="{{product.id}}" class="product_item">
+                                <td class="plantmore-product-thumbnail">
+                                    {% for img in product.product_image.all %}{% if img.is_active %}
+                                    <a href="/single_product"><img src="{{ img.image.url }}" alt="..." style="width: 90px; height: 90px;"></a>
+                                    {% endif %}{% endfor %}
+                                </td>
+                                <td class="plantmore-product-name"><a href="/single_product">{{ product.name }}</a>
+                                    <p>Size: <span class="text-light">{{ product.size }}</span> &nbsp;&emsp;&nbsp;&emsp; Color: <span class="text-light">{{ product.Color }}</span></p>
+                                </td>
+                                <td></td>
+                                <td class="plantmore-product-quantity">
+                                    <label for="select">Qty</label>
+                                    <select id="select{{product.id}}">
+                                        <option selected>{{ item.qty }}</option>
+                                        <option value="2">1</option>
+                                        <option value="3">2</option>
+                                        <option value="4">3</option>
+                                        <option value="1">4</option>
+                                        <option value="2">5</option>
+                                        <option value="3">6</option>
+                                        <option value="3">7</option>
+                                    </select>
+                                </td>
+                                <td><button type="button" id="update_btn" data-index="{{product.id}}" class="update_btn"><i class="bi bi-bag-check"></i></button></td>
+                                <td class="product-subtotal"><span class="amount">Ksh {{ product.price }}</span></td>
+                                <td class="plantmore-product-remove"><button type="button" id="delete_btn" data-index="{{product.id}}" class="delete_btn"><i class="ion-ios-close-empty"></i></button></td>
+                            </tr>
+                            {% endwith %} {% endfor %}
+                            <tr>
+                                <th class="plantmore-product-remove">TOTAL</th>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td id="subtotal" class="product-subtotal"><span class="amount">Ksh {{cart.get_total_price}}</span></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row pad-lr-45">
+            <div class="col-md-6  col-sm-6 col-12 mar-top-40 text-center">
+                <a href="{% url 'shop:catalog_view' %}" class="button style3">Continue Shopping</a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-12 mar-top-40 text-center">
+                <a href="{% url 'payment:checkout_view' %}" class="button style1">Proceed to Checkout</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Shop cart ends-->
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: inline;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

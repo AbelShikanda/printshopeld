@@ -1,0 +1,245 @@
+{% load static %}
+<!--Header Area starts-->
+<div id="header" class="header-menu">
+    <div class="container-fluid pad-lr-30">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <div class="logo">
+                    {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_logo%}
+                    <a href="{{ lay.title }}">
+                        <img src="{{ img.image.url }}" alt="Brand logo" style="height: 25px; width: 30px;">
+                    </a>
+                    {% endif %}{% endfor %}{% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6 d-none-1">
+                <div class="main-header-inner">
+                    <div class="main-menu">
+                        <nav id="mobile-menu">
+                            <ul>
+                                <li class="active"><a href="/">Home</a></li>
+                                <li><a href="#">Category</a>
+                                    <ul class="megamenu dropdown">
+                                        <li class="mega-title"><a href="#">All</a>
+                                            <ul>
+                                                {% for category in categories %}
+                                                <li><a href="{{category.get_absolute_url}}">{{category.name|title}}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <li class="mega-banner">
+                                            <a href="#"><img src="{% static '/img/pic/4ph.jpg' %}" alt="..." style="width: 200px; height: 300px;"></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><a href="#">About</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/faqs">FAQ</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/blog">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="/blog">categories <i class="bi bi-chevron-right"></i></a>
+                                            <ul class="dropdown">
+                                                {% for category in blog_categories %}
+                                                <li><a href="{{category.get_absolute_url}}">{{category.name|title}}</a></li>
+                                                {% endfor %}
+                                            </ul>
+                                        </li>
+                                        <!-- <li><a href="/blog">Our Products <i class="bi bi-chevron-right"></i></a>
+                                            <ul class="dropdown">
+                                                <li><a href="#">Tees</a></li>
+                                                <li><a href="#">Sweatshirts</a></li>
+                                                <li><a href="#">Hoodies</a></li>
+                                                <li><a href="#">Sweatpants</a></li>
+                                            </ul>
+                                        </li> -->
+                                    </ul>
+                                </li>
+                                <li><a href="/catalog">Collection</a>
+                                    <ul class="megamenu dropdown lookbook">
+                                        <li>
+                                            <a href="catalog"> <img src="{% static '/img/product/1h.jpg' %}" alt="...">
+                                                <p class="mar-top-15">Trending 2019</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="catalog"> <img src="{% static '/img/product/1t.jpg' %}" alt="...">
+                                                <p class="mar-top-15">Lookbook</p>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="catalog"> <img src="{% static '/img/product/2h.jpg' %}" alt="...">
+                                                <p class="mar-top-15">50% off</p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 text-right d-none-1">
+                <ul class="offset-menu-wrapper">
+                    <li>
+                        <a id="searchBtn" class="search-btn"><i class="bi bi-search"></i></a>
+                        <div class="search-container">
+                            <div id="search" class="">
+                                <button type="button" class="close"><span class="ti-close"></span></button>
+                                <form class="middle-v">
+                                    <ul class="search-menu text-center mar-bot-30">
+                                        <li><a href="#">All Categories</a></li>
+                                        <li><a href="#">Men</a></li>
+                                        <li><a href="#">Women</a></li>
+                                        <li><a href="#">Kids</a></li>
+                                    </ul>
+                                    <input id="search_element" type="search" placeholder="Type &amp; hit enter">
+                                </form>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="user-menu">
+                        <i class="bi bi-person"></i>
+                        <ul class="user-dropdown-menu">
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'UserAccount:accounts_view' %}">My Account</a></li>
+                            <li><a href="{% url 'logout' %}">logout</a></li>
+                            <li><a href="/checkout">Checkout</a></li>
+                            {% else %}
+                            <li><a href="{% url 'UserAccount:login' %}">Login</a></li>
+                            <li><a href="{% url 'UserAccount:register' %}">register</a></li>
+                            {% endif %}
+                            <li><a href="/wishlist">Wishlist</a></li>
+                            <li><a href="{% url 'cart:cart_summary' %}">cart</a></li>
+                        </ul>
+                    </li>
+                    <li class="cart__menu"><i class="bi bi-cart3"></i> {% with total_qty=cart|length %}
+                        <span id="cart_qty">
+                            {% if total_qty > 0 %}
+                                {{ total_qty }}
+                            {% else %}
+                                0
+                            {% endif %}
+                        </span> {% endwith %}
+                    </li>
+                    <li class="panel_setting"><span><i class="bi bi-menu-app"></i></span></li>
+                </ul>
+            </div>
+            <div class="col-12 d-block">
+                <div class="mobile-menu">
+                    <ul class="res-cart offset-menu-wrapper d-none-3">
+                        <li class="cart__menu"><i class="bi bi-cart3"></i>{% with total_qty=cart|length %}
+                            <span id="cart_qty">
+                                {% if total_qty > 0 %}
+                                    {{ total_qty }}
+                                {% else %}
+                                    0
+                                {% endif %}
+                            </span> {% endwith %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="body__overlay"></div>
+<!-- Offset Wrapper starts-->
+<div class="offset__wrapper">
+    <div class="shopping__cart">
+        <div class="shopping__cart__inner">
+            <div class="offsetmenu__close__btn">
+                <i class="bi bi-x"></i>
+            </div>
+            <div class="shp__cart__wrap">
+                {% for item in cart %} {% with product=item.product %}
+                <div class="shp__single__product">
+                    <div class="shp__pro__thumb">
+                        {% for img in product.product_image.all %}{% if img.is_active %}
+                        <a href="#">
+                            <img src="{{ img.image.url }}" alt="product images">
+                        </a>
+                        {% endif %}{% endfor %}
+                    </div>
+                    <div class="shp__pro__details">
+                        <h2><a href="product-details.html">{{ product.name }}</a></h2>
+                        <span>{{item.qty}}</span>
+                        <span class="shp__price">Ksh {{ product.price }}</span>
+                    </div>
+                    <div class="remove__btn">
+                        <a href="#" title="Remove this item"><i class="bi bi-x"></i></a>
+                    </div>
+                </div>
+                {% endwith %} {% endfor %}
+            </div>
+            <ul class="shoping__total">
+                <li class="subtotal">Subtotal:</li>
+                <li class="total__price">Ksh {{cart.get_total_price}}</li>
+            </ul>
+            <ul class="shopping__btn">
+                <li><a href="{% url 'cart:cart_summary' %}">View Cart</a></li>
+                <li class="shp__checkout"><a href="/checkout">Checkout</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="setting-panel bg-offset d-none-1" style="background-image: url('{% static '/img/pic/2pt.jpg' %}')">
+        <div class="overlay op-7"></div>
+        <div class="setting-panel-inner">
+            <div class="offsetmenu__close__btn">
+                <i class="bi bi-x"></i>
+            </div>
+            <div class="setting-panel-wrap">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Select Language</label>
+                            <select class="form-control custom-select">
+                                <option>English</option>
+                                <option>France</option>
+                                <option>Polish</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>select currency</label>
+                            <select class="form-control custom-select">
+                                <option>USD</option>
+                                <option>Euro</option>
+                                <option>Rs</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <ul class="setting-wrapper mar-tb-40">
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="/faqs">FAQ</a></li>
+                </ul>
+                <div class="mar-top-20">
+                    <ul class="social-buttons style5 mar-top-20">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                        <li><a href="#"><i class="ion-social-linkedin"></i></a></li>
+                    </ul>
+                </div>
+                <ul class="payment-opt style1 mar-top-20">
+                    <li>
+                        <a href="#"><img src="{% static '/img/product/1h.j'%}p g " alt="..." style="width: 30px; height: 20px"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{% static '/img/product/1h.j'%}p g " alt="..." style="width: 30px; height: 20px"></a>
+                    </li>
+                    <li>
+                        <a href="#"><img src="{% static '/img/product/1h.j'%}p g " alt="..." style="width: 30px; height: 20px"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Offset Wrapper ends -->
+<!-- Header Area  ends -->

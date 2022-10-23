@@ -1,0 +1,68 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %}
+<!--Breadcrumb Area start-->
+<div class="breadcrumb-section bg-s" style="background-image: url('{% static '/img/bg/header/4.jpg' %}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Register {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="account">{% endblock breadcrumb_link %}
+                    {% block breadcrumb_name %} Register {% endblock breadcrumb_name %}
+                    </h3>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Breadcrumb Area ends-->
+<!--User login section starts-->
+<section class="user-login-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 tabs style1 text-center">
+                <ul class="ui-list nav nav-tabs justify-content-center mar-tb-30" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#register" role="tab" aria-selected="false">Register</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-6 offset-md-3">
+                <form id="register-form" action="register" method="POST"> {% csrf_token %} {% for field in form %} {% if field.errors %}
+                    <div class="alert alert-primary" role="alert">
+                        {{ field.errors|striptags }}
+                    </div>
+                    {% endif %}{% endfor %}
+                    <div class="form-group">
+                        {{form.user_name}}
+                    </div>
+                    <div class="form-group">
+                        {{form.email}}
+                    </div>
+                    <div class="form-group">
+                        {{form.password}}
+                    </div>
+                    <div class="form-group">
+                        {{form.password2}}
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-sm-6 col-sm-offset-3">
+                                <input type="submit" class="button style1" value="Register">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+</section>
+<!--User login section endss-->
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: none;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

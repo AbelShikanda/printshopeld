@@ -1,0 +1,103 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %}
+<!--Breadcrumb Area start-->
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.image.url}}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Blog_single {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="#">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} Blog_single {% endblock breadcrumb_name %}</h3>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}{% endfor %}{% endfor %}
+<!--Breadcrumb Area ends-->
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-8 offset-md-2 mar-top-80">
+            <article class="post-single">
+                <div class="post-content-wrap">
+                    <div class="post-content">
+                        {% for img in blog.blog_image.all %}{% if img.is_heading %}
+                        <h1 class="post-title text-center">{{blog.title}}</h1>
+                        <div class="post-meta mar-bot-30 text-center">
+                            <span class="blog-meta"><a href="/blog_single"></a> Added on {{blog.created_at}}</span>
+                        </div>
+
+                        <img src="{{img.image.url}}" alt="...">
+                        <p class="lead">{{blog.intro}}</p>
+                        <p>{{blog.body}}</p>
+                        <blockquote class="style1">
+                            <p>{{blog.quote}}</p>
+                        </blockquote>
+                        {% endif %}{% endfor %}
+                        <div class="row">
+                            {% for img in blog.blog_image.all %}{% if img.is_feature %}
+                            <div class="col-md-6 col-xs-6">
+                                <img src="{{img.image.url}}" alt="...">
+                            </div>
+                            {% endif %}{% endfor %} {% for img in blog.blog_image.all %}{% if img.is_footing %}
+                            <div class="col-md-12 col-xs-12">
+                                <img src="{{img.image.url}}" alt="...">
+                            </div>
+                            {% endif %}{% endfor %}
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="post-tags">
+                                    <span>Tags:</span> <a href="/blog_single">Fashion</a> <a href="/blog_single">Men</a> <a href="/blog_single">Cloth</a>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="post-social">
+                                    <ul class="social-buttons style3">
+                                        <li><a href="Socials"><i class="ion-social-facebook"></i></a></li>
+                                        <li><a href="Socials"><i class="ion-social-twitter"></i></a></li>
+                                        <li><a href="Socials"><i class="ion-social-instagram"></i></a></li>
+                                        <li><a href="Socials"><i class="ti-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="post-nav ">
+                    <div class="row ">
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="page-prev ">
+                                <a href="/blog_single ">
+                                    <span>Previous Post</span>
+                                    <p>10 ways to stay focused on your goals</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-12 ">
+                            <div class="page-next ">
+                                <a href="/blog_single ">
+                                    <span>Next Post</span>
+                                    <p>9 things that I learnt from life</p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</div>
+<!--Scroll to top starts-->
+<a href="# " id="scrolltotop " style="display: none; "><i class="ion-ios-arrow-thin-up "></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

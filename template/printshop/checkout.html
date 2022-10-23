@@ -1,0 +1,241 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %}
+<!--Breadcrumb Area start-->
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.image.url}}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Checkout {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="Checkout">{% endblock breadcrumb_link %}
+                    {% block breadcrumb_name %} Checkout {% endblock breadcrumb_name %}
+                    </h3>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}{% endfor %}{% endfor %}
+<!--Breadcrumb Area ends-->
+<!-- Content Wrapper -->
+<section class="content-wrapper mar-tb-30">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12 text-right mar-bot-20">
+                <div class="alert-general text-center res-box" role="alert">
+                    <div class="alert-icon"><i class="ion-ios-chatbubble-outline"></i><span>Returning customer? </span><a href="{% url 'UserAccount:login' %}" class="bold">Click here to login</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 mar-top-30">
+                <h3 class="section-title">Billing Details</h3>
+                <form class="row calculate-shipping">
+
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="first-name" placeholder="First Name *">
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="last-name" placeholder="Last Name *">
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="company-name" placeholder="email Address *">
+                    </div>
+
+                    <div class="col-12">
+                        <div class="form-group">
+                            <select class="form-control custom-select">
+                                    <option>Country</option>
+                                    <option>Australia</option>
+                                    <option>Canada</option>
+                                    <option>Mexico</option>
+                                </select>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="company-name" placeholder="Company Name">
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="street-address" placeholder="Street Address">
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="street-address2" placeholder="Apartment, suite, unit etc. (optional)">
+                    </div>
+                    <div class="col-12">
+                        <input class="form-control" type="text" name="city-town" placeholder="City / Town">
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="state" placeholder="State / County">
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="PC" placeholder="Postcode / Zip">
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="email" placeholder="Email *">
+                    </div>
+                    <div class="col-sm-6">
+                        <input class="form-control" type="text" name="phone" placeholder="Phone *">
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="col-md-6 mar-top-30">
+                <h3 class="section-title">Your order</h3>
+                <div class="cart-total">
+                    <table class="table cart-table">
+                        <thead>
+                            <tr>
+                                <th class="text-left" scope="col">Product</th>
+                                <th></th>
+                                <th class="text-right" scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in cart %} {% with product=item.product %}
+                            <tr>
+                                {% for img in product.product_image.all %}{% if img.is_active %}
+                                <td class="text-left"><img src="{{ img.image.url }}" alt="..." style="width: 90px; height:90px"></td>
+                                {% endif %}{% endfor %}
+                                <td class="text-left">
+                                    <p>{{ product.name }}</p>
+                                    <p>{{ item.qty }}</p>
+                                    <p>{{ product.size }}</p>
+                                    <p>{{ product.Color }}</p>
+                                </td>
+                                <td class="text-right">Ksh {{ product.price }}</td>
+                                <td class="action-btn text-right"><i class="ion-ios-close-empty"></i></td>
+                            </tr>
+                            {% endwith %} {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="sm-heading"><span>Cart Subtotal:</span> Ksh {{cart.get_total_price}}</div>
+                    <div class="sm-heading"><span>Shipping and Handling:</span> Free Shipping</div>
+                    <div class="sm-heading final-price"><span>Order Total:</span> Ksh {{cart.get_total_price}}</div>
+                    <div class="block block-subtotal">
+                        <div class="subtotal d-flex align-items-center justify-content-between">
+                            <div class="label h6">Subtotal</div>
+                            <div class="price">Ksh {{cart.get_total_price}}</div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-7">
+                                <div class="form-group coupon-code float-left">
+                                    <label>Enter your coupon code</label>
+                                    <input type="text" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-5 mar-top-50">
+                                <div class="actions ">
+                                    <button class="button style1">Aplly coupon</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="shipping text-left">
+                            <div class="label h6">Shiping</div>
+                            <div class="custom-control custom-radio mt-3">
+                                <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio1">Standard <span class="price">$20.00</span></label>
+                            </div>
+                            <div class="custom-control custom-radio mt-3">
+                                <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio2">Express <span class="price">$40.00</span></label>
+                            </div>
+                            <div class="custom-control custom-radio mt-3">
+                                <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                                <label class="custom-control-label" for="customRadio3">Free shipping <span class="price">FREE</span></label>
+                            </div>
+                        </div>
+                        <div class="total d-flex align-items-center justify-content-between">
+                            <div class="label h5">Total</div>
+                            <div class="price">Ksh {{cart.get_total_price}}</div>
+                        </div>
+                    </div>
+                    <div class="payment-options">
+                        <label class="custom-checkbox">
+                            <input type="radio" name="bank-transfer">
+                            <span class="sm-heading">Direct Bank Transfer</span>
+                        </label>
+                        <div class="alert alert-general no-border mar-bot-0">
+                            <div class="alert-text">
+                                <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                            </div>
+                        </div>
+                        <label class="custom-checkbox">
+                                <input type="radio" name="bank-transfer">
+                                <span class="sm-heading">Credit card</span>
+                                <span class="card-options"><img src="{% static '/img/feature/1.jpg' %}" alt="..." style="width: 30px; height: 20px;"></span>
+                                <span class="card-options pad-right-5"><img src="{% static '/img/feature/1.jpg' %}" alt="..." style="width: 30px; height: 20px;"></span>
+                                <span class="card-options pad-right-5"><img src="{% static '/img/feature/1.jpg' %}" alt="..." style="width: 30px; height: 20px;"></span>
+
+                            </label>
+                        <label class="custom-checkbox">
+                                <input type="radio" name="bank-transfer">
+                                <span class="sm-heading">Paypal</span>
+                                <span class="card-options"><img src="{% static '/img/feature/1.jpg' %}" alt="..." style="width: 30px; height: 20px;"></span>
+                            </label>
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                            <label class="custom-control-label" for="customCheck1">I've read and accecpt the terms</label>
+                        </div>
+                    </div>
+                    <div class="checkout-actions mar-top-30">
+                        <div class="row mb-4">
+                            <form action="">
+                                {{order_form}}
+                                <div class="col text-center">
+                                    <a href="#" class="btn btn-lg btn-success" data-toggle="modal" data-target="#largeModal" id="this">Proceed to payment</a>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Content Wrapper Ends -->
+
+<div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title" id="myModalLabel" class="text-dark"> <strong>Enter Your phone number</strong> </p>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <form action="{% url 'mpesa_api:lipa_na_mpesa' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-field">
+                        {{pay_form.phone}}
+                    </div><br>
+                    <div class="form-field">
+                        <input class="form-control" type="hidde" name="price" id="price" value="{{cart.get_total_price}}" placeholder="" readonly>
+                    </div>
+
+                    <div class="form-field">
+                        <input class="form-control" type="hidde" name="rand" id="rand" value="" placeholder="" readonly>
+                    </div>
+                    <div><button class="button style1" id="phoneSubmit" type="submit">Complete Payment</button></div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: inline;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

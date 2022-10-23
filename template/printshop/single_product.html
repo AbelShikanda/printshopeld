@@ -1,0 +1,947 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %}
+<!--Product details section starts-->
+<section class="product-details-section">
+    <div class="container pad-lr-15">
+        <div class="row">
+            <div class="col-md-5 mar-bot-30">
+                <div class="slider-wrapper">
+                    <div class="slider-for slick-initialized slick-slider">
+                        <div aria-live="polite" class="slick-list draggable">
+                            <div class="slick-track" role="listbox" style="opacity: 1; width: 2225px;">
+                                {% for img in product.product_image.all %}{% if img.is_active %}
+                                <div class="slider-for__item ex1 slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style="width: 445px; position: relative; left: 0px; top: 0px; z-index: 999; opacity: 1; overflow: hidden;">
+                                    <img src="{{img.image.url}}" alt="...">
+                                </div>
+                                {% endif %}{% endfor %}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-1 mar-top-20">
+                <h3 class="item-name"> {{product.name}}</h3>
+                <div class="item-review">
+                    <ul class="no-pad-left">
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-ios-star"></i></li>
+                        <li><i class="ion-android-star-half"></i></li>
+                    </ul>
+                    <span>04 Review(s)</span>
+                </div>
+                <div class="item-price">Ksh {{product.price}}</div>
+                <div class="item-stock">Available: <span>In Stock</span></div>
+                <div class="item-short-description">
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="item-sku mar-top-30">
+                    <div class="size-checkbox">
+                        <span>Size:</span>
+                        <ul class="d-inline mar-left-30 filter-opt style1">
+                            <li><a href="#">S</a></li>
+                            <li class="active"><a href="#">M</a></li>
+                            <li><a href="#">L</a></li>
+                            <li><a href="#">XL</a></li>
+                            <li><a href="#">XXL</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="item-sku single-product-color mar-top-30">
+                    <span>Color</span>
+                    <div class="mar-left-20 d-inline product-color">
+                        <a class="bg-green" href="#"></a>
+                        <a class="bg-antique active" href="#"></a>
+                        <a class="bg-amber" href="#"></a>
+                    </div>
+                </div>
+                <div class="item-options">
+                    <div class="row mar-top-30">
+                        <div class="col-md-4 col-4">
+                            <div class="float-left">
+                                <label for="select">Qty</label>
+                                <select id="select">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="1">5</option>
+                                    <option value="2">6</option>
+                                    <option value="3">7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-8">
+                            <div class="float-left">
+                                <button id="add_btn" value="{{product.id}}" class="button style1 mar-tb-0">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item-categories"><span>Categories:</span> <a href="#">Men</a>, <a href="#">Jacket</a> ,<a href="#">Leather</a></div>
+                <div class="item-tags"><span>Tags:</span> <a href="#">Men’s Clothing</a>, <a href="#">Clothing</a>, <a href="#">Fashion</a></div>
+                <div class="item-share  mar-top-30"><span>Share:</span>
+                    <ul class="social-buttons style3 mar-top-20 d-inline product-share">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Product details section ends-->
+<!--content wrapper section starts-->
+<section class="content-wrapper-section">
+    <div class="content-wrapper no-pad-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 tabs style2">
+                    <ul class="nav nav-tabs mar-top-30 product-details-tab" id="lionTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="branding-tab_one" data-toggle="tab" href="#size" role="tab" aria-selected="true">Size Guide</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="graphic-design-tab" data-toggle="tab" href="#comments" role="tab" aria-selected="false">Reviews <span class="text-grey"> (3)</span></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-12 mar-top-20">
+                    <div class="tab-content mar-tb-30" id="lionTabContent">
+                        <div class="tab-pane fade show active" id="size" role="tabpanel" aria-labelledby="branding-tab_one">
+                            <div class="table-content table-responsive">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th class="plantmore-product-thumbnail">Size</th>
+                                            <th class="cart-product-name">Bust</th>
+                                            <th class="plantmore-product-price">Waist</th>
+                                            <th class="plantmore-product-quantity">Hips</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="plantmore-product-thumbnail"><a href="#">XL</a></td>
+                                            <td class="plantmore-product-name"><a href="#">41-42</a>
+                                            </td>
+                                            <td class="plantmore-product-price"><span class="amount">33-35</span></td>
+                                            <td class="plantmore-product-quantity">
+                                                43-45
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="plantmore-product-thumbnail"><a href="#">XL</a></td>
+                                            <td class="plantmore-product-name"><a href="#">41-42</a>
+                                            </td>
+                                            <td class="plantmore-product-price"><span class="amount">33-35</span></td>
+                                            <td class="plantmore-product-quantity">
+                                                43-45
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="plantmore-product-thumbnail"><a href="#">XL</a></td>
+                                            <td class="plantmore-product-name"><a href="#">41-42</a>
+                                            </td>
+                                            <td class="plantmore-product-price"><span class="amount">33-35</span></td>
+                                            <td class="plantmore-product-quantity">
+                                                43-45
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="comments" role="tabpanel">
+                            <div class="item-reviews">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h3>3 reviews for White Striped top</h3>
+                                        </div>
+                                    </div>
+                                    <div class="row mar-tb-30">
+                                        <div class="col-md-2">
+                                            <div class="reviewer-img">
+                                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                            <h5 class="reviewer-text">Jhon Conor- <span> Dec 25th,2018</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ipsum perspiciatis, impedit laboriosam commodi in excepturi porro aut tempore facilis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mar-tb-30">
+                                        <div class="col-md-2">
+                                            <div class="reviewer-img">
+                                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                            <h5 class="reviewer-text">Jhon Conor- <span> Dec 25th,2018</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ipsum perspiciatis, impedit laboriosam commodi in excepturi porro aut tempore facilis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row mar-tb-30">
+                                        <div class="col-md-2">
+                                            <div class="reviewer-img">
+                                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                            <h5 class="reviewer-text">Jhon Conor- <span> Dec 25th,2018</span></h5>
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae ipsum perspiciatis, impedit laboriosam commodi in excepturi porro aut tempore facilis.</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="comment-respond">
+                                            <h3>Write your Review</h3>
+                                            <p>Your email address will not be published. Required fields are marked with *</p>
+                                            <h3>Your Ratings</h3>
+                                            <ul class="product-rating">
+                                                <li><i class="text-grey ion-android-star"></i></li>
+                                                <li><i class="text-grey ion-android-star"></i></li>
+                                                <li><i class="text-grey ion-android-star"></i></li>
+                                                <li><i class="text-grey ion-android-star"></i></li>
+                                                <li><i class="text-grey ion-android-star"></i></li>
+                                            </ul>
+                                            <form action="#" method="post" class="row contact-form">
+                                                <div class="col-sm-12 text-areas">
+                                                    <textarea id="comment" class="form-control" placeholder="Your Review....*" name="comment" required=""></textarea>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input id="author" class="form-control" placeholder="Name*" name="author" type="text" required="">
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <input id="subject" class="form-control" placeholder="Email*" name="subject" type="text" required="">
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <input id="email" class="form-control" placeholder="Website*" name="email" type="text" required="">
+                                                </div>
+                                                <div class="col-sm-12 form-submit">
+                                                    <button class="button md style1" name="submit" type="submit" id="submit">Submit</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--content wrapper ends-->
+<!--Product area starts-->
+<section class="product-tab-section v1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <div class="section-title style1 mar-bot-30">
+                    <h2>Related Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="product-slider-wrapper v1 swiper-container swiper-container-horizontal">
+                <div class="swiper-wrapper" style="transform: translate3d(0px, 0px, 0px);">
+                    <div class="swiper-slide mar-bot-30 swiper-slide-active" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style2">
+                            <div class="single-product-item">
+                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <div class="product-promo-text style3">
+                                    <p>Sold</p>
+                                </div>
+                                <div class="product-overlay">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href=""></a> <span class="ion-ios-heart-outline"></span>
+                                    </a>
+                                    <a href=""></a> <span class="ion-arrow-resize"></span>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Stylish check shirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price">$383</span>
+                                        <span class="price-discount">$499</span>
+                                    </div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="product-color">
+                                            <a class="bg-green" href="#"></a>
+                                            <a class="bg-antique" href="#"></a>
+                                            <a class="bg-amber" href="#"></a>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30 swiper-slide-next" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style4">
+                            <div class="single-product-item v1">
+                                <img class="product-img" src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <img class="product-img-hover" src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <div class="product-promo-text style5">
+                                    <p>-30%</p>
+                                </div>
+                                <div class="sidebar-content-wrap v2 sidebar-single-active text-center">
+                                    <div class="daily-deals-wrap v2">
+                                        <!-- countdown start -->
+                                        <div class="countdown-deals text-center" data-countdown="2019/5/01"><span class="cdown day"><span class="time-count">0</span>
+                                            <p>Days</p>
+                                            </span> <span class="cdown hour"><span class="time-count">0</span>
+                                            <p>Hours</p>
+                                            </span> <span class="cdown minutes"><span class="time-count">00</span>
+                                            <p>mins</p>
+                                            </span> <span class="cdown second"><span class="time-count">00</span>
+                                            <p>secs</p>
+                                            </span>
+                                        </div>
+                                        <!-- countdown end -->
+                                    </div>
+                                </div>
+                                <div class="product-overlay style1">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Slim Stretch Tshirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price">$383</span>
+                                        <span class="price-discount">$499</span>
+                                    </div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="product-color">
+                                            <a class="bg-green" href="#"></a>
+                                            <a class="bg-antique" href="#"></a>
+                                            <a class="bg-amber" href="#"></a>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style3">
+                            <div class="single-product-item">
+                                <div class="product-item-img">
+                                    <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                </div>
+                                <div class="product-overlay">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Slim Stretch Tshirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price"><span class="price">$499</span></div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="size-checkbox">
+                                            <form action="#">
+                                                <ul class="filter-opt style1">
+                                                    <li><a href="#">S</a></li>
+                                                    <li class="active"><a href="#">M</a></li>
+                                                    <li><a href="#">L</a></li>
+                                                    <li><a href="#">XL</a></li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style2">
+                            <div class="single-product-item">
+                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <div class="product-overlay style1">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Slim Cotton shirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price">$383</span>
+                                        <span class="price-discount">$499</span>
+                                    </div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="product-color">
+                                            <a class="bg-green" href="#"></a>
+                                            <a class="bg-antique" href="#"></a>
+                                            <a class="bg-amber" href="#"></a>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style3">
+                            <div class="single-product-item">
+                                <div class="product-item-img">
+                                    <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                </div>
+                                <div class="product-overlay style1">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Pleated skirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price"><span class="price">$499</span></div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="size-checkbox">
+                                            <form action="#">
+                                                <ul class="filter-opt style1">
+                                                    <li><a href="#">S</a></li>
+                                                    <li class="active"><a href="#">M</a></li>
+                                                    <li><a href="#">L</a></li>
+                                                    <li><a href="#">XL</a></li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style2">
+                            <div id="carousel-thumb" class="carousel slide carousel-fade carousel-thumbnails" data-ride="carousel" data-interval="false">
+                                <div class="single-product-item">
+                                    <!--Slides-->
+                                    <div class="carousel-inner" role="listbox">
+                                        <div class="carousel-item active single-product-wrapper style2">
+                                            <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            <div class="product-promo-text style1">
+                                                <p>New</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item single-product-wrapper style2">
+                                            <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            <div class="product-promo-text style1">
+                                                <p>New</p>
+                                            </div>
+                                        </div>
+                                        <div class="carousel-item single-product-wrapper style2">
+                                            <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                            <div class="product-promo-text style1">
+                                                <p>New</p>
+                                            </div>
+                                        </div>
+                                        <div class="product-overlay">
+                                            <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                            <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                            <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!--/.Slides-->
+                                <div class="product-details">
+                                    <div class="product-details--1st">
+                                        <div class="product-name"><a href="#">
+                                                    Slim Stretch Tshirt
+                                                </a></div>
+                                        <div class="rating-summary">
+                                            <div class="rating-result" title="60%">
+                                                <ul class="product-rating">
+                                                    <li><i class="ion-android-star"></i></li>
+                                                    <li><i class="ion-android-star"></i></li>
+                                                    <li><i class="ion-android-star"></i></li>
+                                                    <li><i class="ion-android-star-half"></i></li>
+                                                    <li><i class="ion-android-star-half"></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price"><span class="price">$499</span></div>
+                                    </div>
+                                    <div class="product-details--hover">
+                                        <div class="product-list-options">
+                                            <!--/.Controls-->
+                                            <ol class="carousel-indicators list-inline">
+                                                <li data-target="#carousel-thumb" data-slide-to="0" class="active"> <img src="{% static '/img/feature/2.jpg' %}" alt="..."></li>
+                                                <li data-target="#carousel-thumb" data-slide-to="1"> <img src="{% static '/img/feature/2.jpg' %}" alt="..."></li>
+                                                <li data-target="#carousel-thumb" data-slide-to="2"> <img src="{% static '/img/feature/2.jpg' %}" alt="..."></li>
+                                            </ol>
+                                            <a href="/single_product" class="button style1">View Details</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Carousel Wrapper-->
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style4">
+                            <div class="single-product-item v1">
+                                <img class="product-img" src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <img class="product-img-hover" src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <div class="product-promo-text style1">
+                                    <p>Hot</p>
+                                </div>
+                                <div class="product-overlay style1">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Slim Stretch Tshirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price">
+                                        <span class="price">$383</span>
+                                        <span class="price-discount">$499</span>
+                                    </div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="product-color">
+                                            <a class="bg-green" href="#"></a>
+                                            <a class="bg-antique" href="#"></a>
+                                            <a class="bg-amber" href="#"></a>
+                                        </div>
+                                    </div>
+                                    <a href="/single_product" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style3">
+                            <div class="single-product-item">
+                                <div class="product-item-img">
+                                    <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                </div>
+                                <div class="product-overlay">
+                                    <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                                    <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                                    <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                                </div>
+                            </div>
+                            <div class="product-details">
+                                <div class="product-details--1st">
+                                    <div class="product-name"><a href="#">
+                                                Slim Stretch Tshirt
+                                            </a></div>
+                                    <div class="rating-summary">
+                                        <div class="rating-result" title="60%">
+                                            <ul class="product-rating">
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                                <li><i class="ion-android-star-half"></i></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="product-price"><span class="price">$499</span></div>
+                                </div>
+                                <div class="product-details--hover">
+                                    <div class="product-list-options">
+                                        <div class="size-checkbox">
+                                            <form action="#">
+                                                <ul class="filter-opt style1">
+                                                    <li><a href="#">S</a></li>
+                                                    <li class="active"><a href="#">M</a></li>
+                                                    <li><a href="#">L</a></li>
+                                                    <li><a href="#">XL</a></li>
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <a href="" class="button style1">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide mar-bot-30" style="width: 262.5px; margin-right: 30px;">
+                        <div class="single-product-wrapper style2">
+                            <div class="single-product-item">
+                                <img src="{% static '/img/feature/2.jpg' %}" alt="...">
+                                <div class="product-promo-text style3">
+                                    <p>Sold</p>
+                                </div>
+                                <div class="product-overlay">
+                                    <a href="#">
+                                        <span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span>
+                                    </a>
+                                    <a href="                                     "></a><span class=" ion-ios-heart-outline "></span>
+                                    </a>
+                                    <a href=" <span class=" ion-arrow-resize "></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-details ">
+                                    <div class="product-details--1st ">
+                                        <div class="product-name "><a href="# ">
+                                                Stylish check shirt
+                                            </a></div>
+                                        <div class="rating-summary ">
+                                            <div class="rating-result " title="60% ">
+                                                <ul class="product-rating ">
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price ">
+                                            <span class="price ">$383</span>
+                                            <span class="price-discount ">$499</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-details--hover ">
+                                        <div class="product-list-options ">
+                                            <div class="product-color ">
+                                                <a class="bg-green " href="# "></a>
+                                                <a class="bg-antique " href="# "></a>
+                                                <a class="bg-amber " href="# "></a>
+                                            </div>
+                                        </div>
+                                        <a href=" " class="button style1 ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide mar-bot-30 " style="width: 262.5px; margin-right: 30px; ">
+                            <div class="single-product-wrapper style2 ">
+                                <div class="single-product-item ">
+                                    <img src="{% static '/img/feature/2.jpg' %} " alt="... ">
+                                    <div class="product-promo-text style3 ">
+                                        <p>Sold</p>
+                                    </div>
+                                    <div class="product-overlay ">
+                                        <a href="# ">
+                                            <span class="ion-ios-eye-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="quick view "></span>
+                                        </a>
+                                        <a href="# "></a><span class=" ion-ios-heart-outline "></span>
+                                    </a>
+                                    <a href="# "></a> <span class=" ion-arrow-resize "></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-details ">
+                                    <div class="product-details--1st ">
+                                        <div class="product-name "><a href="# ">
+                                                Stylish check shirt
+                                            </a></div>
+                                        <div class="rating-summary ">
+                                            <div class="rating-result " title="60% ">
+                                                <ul class="product-rating ">
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price ">
+                                            <span class="price ">$383</span>
+                                            <span class="price-discount ">$499</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-details--hover ">
+                                        <div class="product-list-options ">
+                                            <div class="product-color ">
+                                                <a class="bg-green " href="# "></a>
+                                                <a class="bg-antique " href="# "></a>
+                                                <a class="bg-amber " href="# "></a>
+                                            </div>
+                                        </div>
+                                        <a href=" " class="button style1 ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide mar-bot-30 " style="width: 262.5px; margin-right: 30px; ">
+                            <div class="single-product-wrapper style2 ">
+                                <div class="single-product-item ">
+                                    <img src="{% static '/img/feature/2.jpg' %} " alt="... ">
+                                    <div class="product-overlay style1 ">
+                                        <a href="# " data-toggle="modal " data-target="#exampleModal "><span class="ion-ios-eye-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="quick view "></span></a>
+                                        <a href="# "><span class="ion-ios-heart-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="Add to wishlist "></span></a>
+                                        <a href="# "><span class="ion-arrow-resize " data-toggle="tooltip " data-placement="right " title=" " data-original-title="Add to compare "></span></a>
+                                    </div>
+                                </div>
+                                <div class="product-details ">
+                                    <div class="product-details--1st ">
+                                        <div class="product-name "><a href="# ">
+                                                Slim Cotton shirt
+                                            </a></div>
+                                        <div class="rating-summary ">
+                                            <div class="rating-result " title="60% ">
+                                                <ul class="product-rating ">
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price ">
+                                            <span class="price ">$383</span>
+                                            <span class="price-discount ">$499</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-details--hover ">
+                                        <div class="product-list-options ">
+                                            <div class="product-color ">
+                                                <a class="bg-green " href="# "></a>
+                                                <a class="bg-antique " href="# "></a>
+                                                <a class="bg-amber " href="# "></a>
+                                            </div>
+                                        </div>
+                                        <a href=" " class="button style1 ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide mar-bot-30 " style="width: 262.5px; margin-right: 30px; ">
+                            <div class="single-product-wrapper style2 ">
+                                <div class="single-product-item ">
+                                    <img src="{% static '/img/feature/2.jpg' %} " alt="... ">
+                                    <div class="product-promo-text style3 ">
+                                        <p>Sold</p>
+                                    </div>
+                                    <div class="product-overlay ">
+                                        <a href="# ">
+                                            <span class="ion-ios-eye-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="quick view "></span>
+                                        </a>
+                                        <a href="# "></a> <span class=" ion-ios-heart-outline "></span>
+                                    </a>
+                                    <a href="# "></a> <span class=" ion-arrow-resize "></span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="product-details ">
+                                    <div class="product-details--1st ">
+                                        <div class="product-name "><a href="# ">
+                                                Stylish check shirt
+                                            </a></div>
+                                        <div class="rating-summary ">
+                                            <div class="rating-result " title="60% ">
+                                                <ul class="product-rating ">
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price ">
+                                            <span class="price ">$383</span>
+                                            <span class="price-discount ">$499</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-details--hover ">
+                                        <div class="product-list-options ">
+                                            <div class="product-color ">
+                                                <a class="bg-green " href="# "></a>
+                                                <a class="bg-antique " href="# "></a>
+                                                <a class="bg-amber " href="# "></a>
+                                            </div>
+                                        </div>
+                                        <a href=" " class="button style1 ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide mar-bot-30 " style="width: 262.5px; margin-right: 30px; ">
+                            <div class="single-product-wrapper style4 ">
+                                <div class="single-product-item v1 ">
+                                    <img class="product-img " src="{% static '/img/feature/2.jpg' %} " alt="... ">
+                                    <img class="product-img-hover " src="{% static '/img/feature/2.jpg' %} " alt="... ">
+                                    <div class="product-promo-text style1 ">
+                                        <p>Hot</p>
+                                    </div>
+                                    <div class="product-overlay style1 ">
+                                        <a href="# " data-toggle="modal " data-target="#exampleModal "><span class="ion-ios-eye-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="quick view "></span></a>
+                                        <a href="# "><span class="ion-ios-heart-outline " data-toggle="tooltip " data-placement="right " title=" " data-original-title="Add to wishlist "></span></a>
+                                        <a href="# "><span class="ion-arrow-resize " data-toggle="tooltip " data-placement="right " title=" " data-original-title="Add to compare "></span></a>
+                                    </div>
+                                </div>
+                                <div class="product-details ">
+                                    <div class="product-details--1st ">
+                                        <div class="product-name "><a href="# ">
+                                                Slim Stretch Tshirt
+                                            </a></div>
+                                        <div class="rating-summary ">
+                                            <div class="rating-result " title="60% ">
+                                                <ul class="product-rating ">
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                    <li><i class="ion-android-star-half "></i></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-price ">
+                                            <span class="price ">$383</span>
+                                            <span class="price-discount ">$499</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-details--hover ">
+                                        <div class="product-list-options ">
+                                            <div class="product-color ">
+                                                <a class="bg-green " href="# "></a>
+                                                <a class="bg-antique " href="# "></a>
+                                                <a class="bg-amber " href="# "></a>
+                                            </div>
+                                        </div>
+                                        <a href=" " class="button style1 ">View Details</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="swiper-notification " aria-live="assertive " aria-atomic="true "></span></div>
+                <!-- Add Pagination -->
+                <div class="product-navigation ">
+                    <div class="product-button-next v1 " tabindex="0 " role="button " aria-label="Next slide " aria-disabled="false "><i class="bi bi-chevron-right "></i></div>
+                    <div class="product-button-prev v1 swiper-button-disabled " tabindex="0 " role="button " aria-label="Previous slide " aria-disabled="true "><i class="bi bi-chevron-left "></i></div>
+                </div>
+            </div>
+        </div>
+</section>
+<!--product area ends-->
+<!--Scroll to top starts-->
+<a href="# " id="scrolltotop "><i class="ion-ios-arrow-thin-up "></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

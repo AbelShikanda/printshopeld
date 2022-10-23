@@ -1,0 +1,33 @@
+{% load static %}
+
+<!--Home Banner starts -->
+<div class="banner-area v1">
+    <div class="home-banner-slider v1 swiper-container">
+        <div class="header-social-menu style1 d-none-1">
+            <ul>
+                {% for sos in socials %}{% if sos.is_active %}
+                <li><a href="{{ sos.link }}">{{ sos.name }}</a></li>
+                {% endif %}{% endfor %}
+            </ul>
+        </div>
+        <div class="swiper-wrapper">
+            {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_header%}
+            <div class="swiper-slide Single-banner-item style1 bg-f v1" style="background-image: url('{{ img.image.url }}')">
+                <div class="container">
+                    <div class="row">
+                        <div class="banner-content middle-v">
+                            <span>{{lay.title}}</span>
+                            <h3>{{lay.subtitle}}<br>{{lay.description}}</h3>
+                            <a href="#" class="link-hov style1">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}{% endfor %}{% endfor %}
+        </div>
+        <!-- Add Pagination -->
+        <div class="banner-pagination v1">
+        </div>
+    </div>
+</div>
+<!--Home Banner Area ends-->

@@ -1,0 +1,118 @@
+{% extends "printshop/base.html" %} {% load static %} {% block content %} {% include 'printshop/breadcrumb.html' %}
+<!--Compare section starts-->
+<section class="compare-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" id="main-content">
+                <div class="table-content table-responsive">
+                    <div class="table-content table-responsive">
+                        <table class="table compare-table">
+                            <tbody>
+                                <tr>
+                                    <th>Product Info</th>
+                                    <td>
+                                        <div class="remove">
+                                            <a href="#">
+                                                <i class="ion-ios-close-empty"></i>
+                                            </a>
+                                        </div>
+                                        <a href="/single_product" class="d-block">
+                                            <div class="image-wrap">
+                                                <img src="{% static '/img/feature/3.jpg' %}" alt="...">
+                                            </div>
+                                            <h4 class="pd-name mar-top-15">Waxed-effect pleated skirt</h4>
+                                        </a>
+                                        <a href="/cart" class="button style1">Add to cart</a>
+                                    </td>
+                                    <td>
+                                        <div class="remove">
+                                            <a href="#">
+                                                <i class="ion-ios-close-empty"></i>
+                                            </a>
+                                        </div>
+                                        <a href="/single_product" class="d-block">
+                                            <div class="image-wrap">
+                                                <img src="{% static '/img/feature/3.jpg' %}" alt="...">
+                                            </div>
+                                            <h4 class="pd-name mar-top-15">Waxed-effect pleated skirt</h4>
+                                        </a>
+                                        <a href="/cart" class="button style1">Add to cart</a>
+                                    </td>
+                                    <td>
+                                        <div class="remove">
+                                            <a href="#">
+                                                <i class="ion-ios-close-empty"></i>
+                                            </a>
+                                        </div>
+                                        <a href="/single_product" class="d-block">
+                                            <div class="image-wrap">
+                                                <img src="{% static '/img/feature/3.jpg' %}" alt="...">
+                                            </div>
+                                            <h4 class="pd-name mar-top-15">Waxed-effect pleated skirt</h4>
+                                        </a>
+                                        <a href="/cart" class="button style1">Add to cart</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td>
+                                        <span class="product-price-wrapper">
+                                                <span class="money">$159.00</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="product-price-wrapper">
+                                                <span class="money">$159.00</span>
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <span class="product-price-wrapper">
+                                                <span class="money">$159.00</span>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Sku</th>
+                                    <td>REF. LA-887</td>
+                                    <td>REF. LA-887</td>
+                                    <td>REF. LA-887</td>
+                                </tr>
+                                <tr>
+                                    <th>Description</th>
+                                    <td class="text-center">Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas… </td>
+                                    <td class="text-center">Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas… </td>
+                                    <td class="text-center">Donec accumsan auctor iaculis. Sed suscipit arcu ligula, at egestas… </td>
+                                </tr>
+                                <tr>
+                                    <th>Availability</th>
+                                    <td>In stock</td>
+                                    <td>In stock</td>
+                                    <td>In stock</td>
+                                </tr>
+                                <tr>
+                                    <th>Weight</th>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                                <tr>
+                                    <th>Dimensions</th>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                    <td>N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!--Compare section ends-->
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: none;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}

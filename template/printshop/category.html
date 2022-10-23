@@ -1,0 +1,245 @@
+{% extends "printshop/base.html" %} {% load static %} {% block title %}Category{% endblock title %} {% block content %}
+<!--Breadcrumb Area start-->
+<div class="breadcrumb-section bg-s" style="background-image: url('{% static '/img/bg/header/4.jpg' %}')">
+    <div class="container-fluid ">
+        <div class="row">
+            <div class="breadcrumb-content middle-v t-center">
+                <h3 class="page-title">
+                    {% block breadcrumb %} Category {% endblock breadcrumb %}</h3>
+                <ul>
+                    <li class="active"><a href="/">Home</a></li>
+                    <li>
+                        {% block breadcrumb_link %}
+                        <a href="catalog">{% endblock breadcrumb_link %}
+                    {% block breadcrumb_name %} Category {% endblock breadcrumb_name %}
+                    </h3>
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Breadcrumb Area ends-->
+<!-- Shop Page Starts-->
+<div class="shop-wrapper style1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wrappage">
+                    <div class="col-12">
+                        <div class="filter-collection-left hidden-lg hidden-md">
+                            <a class="filter-btn"><i class="ion-android-funnel"></i> Filter</a>
+                        </div>
+                    </div>
+                    <h3 class="text-center">{{category.name}}</h3>
+                    <div class="col-12 hidden-md hidden-lg col-left collection-sidebar" id="filter-sidebar">
+                        <div class="close-sidebar-collection hidden-lg hidden-md">
+                            <i class="icon_close ion-ios-close-empty"></i>
+                        </div>
+                        <div class="widget-filter filter-cate no-pd-top">
+                            <h3>Categories</h3>
+                            <ul>
+                                <li><a class="active" href="#">Mens</a></li>
+                                <li><a href="#">Womens</a></li>
+                                <li><a href="#">Kids</a></li>
+                                <li><a href="#">Accessories</a></li>
+                                <li><a href="#">Others</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget-filter filter-cate filter-color">
+                            <h3>Filter by colors</h3>
+                            <ul>
+                                <li><a class="active" href="#">Black</a></li>
+                                <li><a href="#">White</a></li>
+                                <li><a href="#">Grey</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget-filter filter-cate filter-size">
+                            <h3>Filter by sizes</h3>
+                            <ul>
+                                <li><a class="" href="#">S</a></li>
+                                <li><a href="#">M</a></li>
+                                <li><a href="#">L</a></li>
+                                <li><a href="#">XL</a></li>
+                                <li><a href="#">XS</a></li>
+                            </ul>
+                        </div>
+                        <div class="widget-filter filter-cate filter-size">
+                            <h3>Filter by price</h3>
+                            <ul>
+                                <li><a class="" href="#">0 - $29</a></li>
+                                <li><a href="#">$30 - $59</a></li>
+                                <li><a href="#">$60 - $89 </a></li>
+                            </ul>
+                        </div>
+                        <div class="widget-filter filter-cate filter-size">
+                            <h3>Filter by brand</h3>
+                            <ul>
+                                <li><a class="" href="#">Adidas</a></li>
+                                <li><a href="#">Nike</a></li>
+                                <li><a href="#">Bitis </a></li>
+                            </ul>
+                        </div>
+                        <a class="btn-filter">
+                                Filter
+                            </a>
+                    </div>
+                    <div class="col-12">
+                        <div class="shop-top">
+                            <div class="shop-element left">
+                                <ul class="js-filter">
+                                    <li class="filter filter-static hidden-xs hidden-sm">
+                                        <a href="#"><i class="zoa-icon-filter"></i>Filter products</a>
+                                        <div class="dropdown-menu fullw">
+                                            <div class="row">
+                                                <div class="col-md-3 widget-filter  filter-cate">
+                                                    <h3>Categories</h3>
+                                                    <ul>
+                                                        <li><a class="active" href="#">Mens</a></li>
+                                                        <li><a href="#">Womens</a></li>
+                                                        <li><a href="#">Kids</a></li>
+                                                        <li><a href="#">Accessories</a></li>
+                                                        <li><a href="#">Others</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3 widget-filter filter-cate filter-color">
+                                                    <h3>Filter by colors</h3>
+                                                    <ul>
+                                                        <li><a class="active" href="#">Black</a></li>
+                                                        <li><a href="#">White</a></li>
+                                                        <li><a href="#">Grey</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3 widget-filter filter-cate filter-size">
+                                                    <h3>Filter by sizes</h3>
+                                                    <ul>
+                                                        <li><a class="" href="#">S</a></li>
+                                                        <li><a href="#">M</a></li>
+                                                        <li><a href="#">L</a></li>
+                                                        <li><a href="#">XL</a></li>
+                                                        <li><a href="#">XS</a></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-3 widget-filter filter-cate filter-size">
+                                                    <h3>Filter by price</h3>
+                                                    <ul>
+                                                        <li><a class="" href="#">0 - $29</a></li>
+                                                        <li><a href="#">$30 - $59</a></li>
+                                                        <li><a href="#">$60 - $89 </a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="filter">
+                                        <a href="#">Sort by: <span>Best selling</span></a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Featured</a></li>
+                                            <li><a href="#">Best Selling</a></li>
+                                            <li><a href="#">Alphabetically, A-Z</a></li>
+                                            <li><a href="#">Alphabetically, A-Z</a></li>
+                                            <li><a href="#">Price, high to low</a></li>
+                                            <li><a href="#">Price, low to high</a></li>
+                                            <li><a href="#">Date, old to new</a></li>
+                                            <li><a href="#">Date, new to old</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="shop-element right">
+                                <span>Showing 1-15 of 69 products</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- EndContent -->
+                </div>
+            </div>
+        </div>
+        <div class="row mar-top-40">
+            {% for catalog in products %}{% for img in catalog.product_image.all %}{% if img.is_active %}
+            <div class="col-md-6 col-sm-6 col-xs-6 mar-bot-30">
+                <div class="single-product-wrapper style3">
+                    <div class="single-product-item">
+                        <div class="product-item-img">
+                            <img src="{{img.image.url}}" alt="...">
+                        </div>
+                        <div class="product-overlay style1">
+                            <a href="#" data-toggle="modal" data-target="#exampleModal"><span class="ion-ios-eye-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="quick view"></span></a>
+                            <a href="#"><span class="ion-ios-heart-outline" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to wishlist"></span></a>
+                            <a href="#"><span class="ion-arrow-resize" data-toggle="tooltip" data-placement="right" title="" data-original-title="Add to compare"></span></a>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <div class="product-details--1st">
+                            <div class="product-name"><a href="#">
+                                        {{catalog.name}}
+                                    </a></div>
+                            <div class="rating-summary">
+                                <div class="rating-result" title="60%">
+                                    <ul class="product-rating">
+                                        <li><i class="ion-android-star"></i></li>
+                                        <li><i class="ion-android-star"></i></li>
+                                        <li><i class="ion-android-star"></i></li>
+                                        <li><i class="ion-android-star-half"></i></li>
+                                        <li><i class="ion-android-star-half"></i></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="product-price"><span class="price">Ksh {{catalog.price}}</span></div>
+                        </div>
+                        <div class="product-details--hover">
+                            <div class="product-list-options">
+                                <div class="size-checkbox">
+                                    <form action="#">
+                                        <ul class="filter-opt style1">
+                                            <li><a href="#">S</a></li>
+                                            <li class="active"><a href="#">M</a></li>
+                                            <li><a href="#">L</a></li>
+                                            <li><a href="#">XL</a></li>
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                            <a href="{{catalog.get_absolute_url}}" class="button style1">View Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}{% endfor %}{% endfor %}
+        </div>
+        <!--pagination starts-->
+        <div class="post-nav nav-res">
+            <div class="row">
+                <div class="col-md-4 col-xs-12">
+                    <div class="page-prev">
+                        <a href="#"><span>Previous Page</span></a>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12 ">
+                    <div class="page-num text-center">
+                        <ul>
+                            <li class="active"><span><a href="#">1</a></span></li>
+                            <li><span><a href="#">2</a></span></li>
+                            <li><span><a href="#">3</a></span></li>
+                            <li><span><a href="#">4</a></span></li>
+                            <li><span><a href="#">5</a></span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    <div class="page-next">
+                        <a href="#"><span>Next Page</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--pagination ends-->
+    </div>
+</div>
+<!-- Shop Page Ends-->
+
+<!--Scroll to top starts-->
+<a href="#" id="scrolltotop" style="display: none;"><i class="ion-ios-arrow-thin-up"></i></a>
+<!--Scroll to top ends-->
+{% endblock content %}
