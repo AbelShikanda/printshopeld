@@ -12,7 +12,7 @@
         </div>
         <div class="swiper-wrapper">
             {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_header%}
-            <div class="swiper-slide Single-banner-item style1 bg-f v1" style="background-image: url('{{ img.image.url }}')">
+            <div class="swiper-slide Single-banner-item style1 bg-f v1" style="background-image: url('{{ img.head_image.url }}')">
                 <div class="container">
                     <div class="row">
                         <div class="banner-content middle-v">
