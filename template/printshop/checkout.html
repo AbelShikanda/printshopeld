@@ -1,7 +1,7 @@
 {% extends "printshop/base.html" %} {% load static %} {% block content %}
 <!--Breadcrumb Area start-->
 {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
-<div class="breadcrumb-section bg-s" style="background-image: url('{{img.image.url}}')">
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.bread_image.url}}')">
     <div class="container-fluid ">
         <div class="row">
             <div class="breadcrumb-content middle-v t-center">
@@ -11,8 +11,8 @@
                     <li class="active"><a href="/">Home</a></li>
                     <li>
                         {% block breadcrumb_link %}
-                        <a href="Checkout">{% endblock breadcrumb_link %}
-                    {% block breadcrumb_name %} Checkout {% endblock breadcrumb_name %}
+                        <a href="{% url 'cart:cart_summary' %}">{% endblock breadcrumb_link %}
+                    {% block breadcrumb_name %} cart {% endblock breadcrumb_name %}
                     </h3>
                     </a>
                     </li>
@@ -26,13 +26,13 @@
 <!-- Content Wrapper -->
 <section class="content-wrapper mar-tb-30">
     <div class="container ">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-6 offset-md-3 col-sm-12 text-right mar-bot-20">
                 <div class="alert-general text-center res-box" role="alert">
                     <div class="alert-icon"><i class="ion-ios-chatbubble-outline"></i><span>Returning customer? </span><a href="{% url 'UserAccount:login' %}" class="bold">Click here to login</a></div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md-6 mar-top-30">
                 <h3 class="section-title">Billing Details</h3>
@@ -101,7 +101,7 @@
                             {% for item in cart %} {% with product=item.product %}
                             <tr>
                                 {% for img in product.product_image.all %}{% if img.is_active %}
-                                <td class="text-left"><img src="{{ img.image.url }}" alt="..." style="width: 90px; height:90px"></td>
+                                <td class="text-left"><img src="{{ img.shop_image.url }}" alt="..." style="width: 90px; height:90px"></td>
                                 {% endif %}{% endfor %}
                                 <td class="text-left">
                                     <p>{{ product.name }}</p>

@@ -105,7 +105,7 @@
                             {% if user.is_authenticated %}
                             <li><a href="{% url 'UserAccount:accounts_view' %}">My Account</a></li>
                             <li><a href="{% url 'logout' %}">logout</a></li>
-                            <li><a href="/checkout">Checkout</a></li>
+                            <li><a href="{% url 'payment:checkout_view' %}">Checkout</a></li>
                             {% else %}
                             <li><a href="{% url 'UserAccount:login' %}">Login</a></li>
                             <li><a href="{% url 'UserAccount:register' %}">register</a></li>
@@ -158,12 +158,12 @@
                     <div class="shp__pro__thumb">
                         {% for img in product.product_image.all %}{% if img.is_active %}
                         <a href="#">
-                            <img src="{{ img.image.url }}" alt="product images">
+                            <img src="{{ img.shop_image.url }}" alt="product images">
                         </a>
                         {% endif %}{% endfor %}
                     </div>
                     <div class="shp__pro__details">
-                        <h2><a href="product-details.html">{{ product.name }}</a></h2>
+                        <h2><a href="#">{{ product.name }}</a></h2>
                         <span>{{item.qty}}</span>
                         <span class="shp__price">Ksh {{ product.price }}</span>
                     </div>
@@ -183,7 +183,9 @@
             </ul>
         </div>
     </div>
-    <div class="setting-panel bg-offset d-none-1" style="background-image: url('{% static '/img/pic/2pt.jpg' %}')">
+    {% for item in cart %} {% with product=item.product %} {% for img in product.product_image.all %}{% if img.is_active and img.is_feature and img.is_header %}
+    <div class="setting-panel bg-offset d-none-1" style="background-image: url('{{ img.shop_image.url }}')">
+        {% endif %}{% endfor %} {% endwith %} {% endfor %}
         <div class="overlay op-7"></div>
         <div class="setting-panel-inner">
             <div class="offsetmenu__close__btn">

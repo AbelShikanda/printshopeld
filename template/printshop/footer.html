@@ -1,6 +1,8 @@
 {% load static %}
 <!-- Footer section Starts-->
-<section class="footer-wrapper style1 footer-bg no-pad" style="background-image: url('{% static '/img/bg/Header/3.jpg' %}')">
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_footer %}
+<section class="footer-wrapper style1 footer-bg no-pad" style="background-image: url('{{img.foot_image.url}}')">
+    {% endif %}{% endfor %}{% endfor %}
     <div class="overlay op-7"></div>
     <div class="footer-top-area style2">
         <div class="container-fluid">
@@ -28,7 +30,7 @@
                     <div class="copyright-area style1 mar-top-50">
                         <p>
                             {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_logo%}
-                            <a href="{{ lay.title }}"><img src="{{ img.image.url }}" alt="..." style="width: 30px; height: 20px;"></a><span>©</span> 2019 </p>
+                            <a href="{{ lay.title }}"><img src="{{ img.head_image.url }}" alt="..." style="width: 30px; height: 20px;"></a><span>©</span> 2019 </p>
                         {% endif %}{% endfor %}{% endfor %}
                     </div>
                 </div>

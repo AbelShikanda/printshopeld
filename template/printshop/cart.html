@@ -1,6 +1,7 @@
 {% extends "printshop/base.html" %} {% load static %} {% block title %}Cart{% endblock title %} {% block content %}
 <!--Breadcrumb Area start-->
-<div class="breadcrumb-section bg-s" style="background-image: url('{% static '/img/bg/header/4.jpg' %}')">
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.bread_image.url}}')">
     <div class="container-fluid ">
         <div class="row">
             <div class="breadcrumb-content middle-v t-center">
@@ -10,8 +11,8 @@
                     <li class="active"><a href="/">Home</a></li>
                     <li>
                         {% block breadcrumb_link %}
-                        <a href="#">{% endblock breadcrumb_link %}
-                        {% block breadcrumb_name %} Cart {% endblock breadcrumb_name %}</h3>
+                        <a href="/catalog">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} shop  {% endblock breadcrumb_name %}</h3>
                         </a>
                     </li>
                 </ul>
@@ -19,6 +20,7 @@
         </div>
     </div>
 </div>
+{% endif %}{% endfor %}{% endfor %}
 <!--Breadcrumb Area ends-->
 <!--Shop cart starts-->
 <section class="shop-cart-section">
@@ -43,7 +45,7 @@
                             <tr data-index="{{product.id}}" class="product_item">
                                 <td class="plantmore-product-thumbnail">
                                     {% for img in product.product_image.all %}{% if img.is_active %}
-                                    <a href="/single_product"><img src="{{ img.image.url }}" alt="..." style="width: 90px; height: 90px;"></a>
+                                    <a href="/single_product"><img src="{{ img.shop_image.url }}" alt="..." style="width: 90px; height: 90px;"></a>
                                     {% endif %}{% endfor %}
                                 </td>
                                 <td class="plantmore-product-name"><a href="/single_product">{{ product.name }}</a>

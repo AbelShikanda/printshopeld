@@ -1,7 +1,7 @@
 {% extends "printshop/base.html" %} {% load static %} {% block content %}
 <!--Breadcrumb Area start-->
 {% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
-<div class="breadcrumb-section bg-s" style="background-image: url('{{img.image.url}}')">
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.bread_image.url}}')">
     <div class="container-fluid ">
         <div class="row">
             <div class="breadcrumb-content middle-v t-center">
@@ -11,8 +11,8 @@
                     <li class="active"><a href="/">Home</a></li>
                     <li>
                         {% block breadcrumb_link %}
-                        <a href="#">{% endblock breadcrumb_link %}
-                        {% block breadcrumb_name %} Blog Categories {% endblock breadcrumb_name %}</h3>
+                        <a href="/blog">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} Blog  {% endblock breadcrumb_name %}</h3>
                         </a>
                     </li>
                 </ul>
@@ -30,7 +30,7 @@
             <div class="col-md-6 mar-bot-30">
                 <div class="single-blog-item style1 text-center">
                     <div class="blog-img mar-bot-30">
-                        <img src="{{img.image.url}}" alt="Image">
+                        <img src="{{img.small_image.url}}" alt="Image">
                     </div>
                     <p>{{blog.category}} / <span>{{blog.created_at}}</span></p>
                     <h3><a href="{{blog.get_absolute_url}}">{{blog.title}}</a></h3>

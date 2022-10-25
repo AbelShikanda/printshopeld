@@ -9,7 +9,7 @@
                         {% for feat in feature %}{% for img in feat.product_image.all %}{% if img.is_active %}
                         <div class="col-md-3 no-pad">
                             <div class="cat-img style1 bg-antique s-left text-center">
-                                <img src="{{ img.image.url }}" alt="{{ img.alt_text.alt_text }}">
+                                <img src="{{ img.feature_image.url }}" alt="{{ img.alt_text.alt_text }}">
                             </div>
                         </div>
                         <div class="col-md-3 no-pad">
@@ -49,11 +49,8 @@
                                 <div class="single-product-wrapper style4">
                                     <div class="single-product-item v1">
                                         {% for img in trend.product_image.all %}{% if img.is_active %}
-                                        <img class="product-img" src="{{ img.image.url }}" alt="..."> {% endif %} {% if img.is_smart_edit %}
-                                        <img class="product-img-hover" src="{{ img.image.url }}" alt="..."> {% endif %}{% endfor %}
-                                        <div class="product-promo-text style5">
-                                            <p>-30%</p>
-                                        </div>
+                                        <img class="product-img" src="{{ img.shop_image.url }}" alt="..."> {% endif %} {% if img.is_smart_edit %}
+                                        <img class="product-img-hover" src="{{ img.shop_image.url }}" alt="..."> {% endif %}{% endfor %}
                                         <div class="sidebar-content-wrap v2 sidebar-single-active text-center">
                                         </div>
                                         <div class="product-overlay style1">
@@ -90,7 +87,7 @@
                                                     <a class="bg-amber" href="#"></a>
                                                 </div>
                                             </div>
-                                            <a href="product-details-v1.html" class="button style1">View Details</a>
+                                            <a href="#" class="button style1">View Details</a>
                                         </div>
                                     </div>
                                 </div>
@@ -106,7 +103,7 @@
 <!--product area ends-->
 <!--Deals Section starts-->
 {% for deal in layouts %}{% for img in deal.layout_image.all %}{% if img.is_deals %}
-<section class="promo-section bg-400 pad-top-40" style="background-image: url('{{ img.image.url }}');">
+<section class="promo-section bg-400 pad-top-40" style="background-image: url('{{ img.deal_image.url }}');">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12 text-center">
@@ -148,7 +145,7 @@
                         {% for blog in blogs %}{% for img in blog.blog_image.all %}{% if img.is_lead %}
                         <div class="single-blog-item style1 swiper-slide">
                             <div class="blog-img mar-bot-30">
-                                <img src="{{img.image.url}}" alt="Image">
+                                <img src="{{img.lead_image.url}}" alt="Image">
                             </div>
                             <p><a href="#">{{blog.category}}</a> / <span>{{blog.created_at}}</span></p>
                             <h3 class="mar-top-10"><a href="#">{{blog.title}}</a></h3>

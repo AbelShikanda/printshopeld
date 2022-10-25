@@ -1,25 +1,26 @@
 {% extends "printshop/base.html" %} {% load static %} {% block content %}
 <!--Breadcrumb Area start-->
-<div class="breadcrumb-section bg-s" style="background-image: url('{% static '/img/bg/header/4.jpg' %}')">
+{% for lay in layouts %}{% for img in lay.layout_image.all %}{% if img.is_breadcrumb %}
+<div class="breadcrumb-section bg-s" style="background-image: url('{{img.bread_image.url}}')">
     <div class="container-fluid ">
         <div class="row">
             <div class="breadcrumb-content middle-v t-center">
                 <h3 class="page-title">
-                    {% block breadcrumb %} Account {% endblock breadcrumb %}</h3>
+                    {% block breadcrumb %} Dashboard {% endblock breadcrumb %}</h3>
                 <ul>
                     <li class="active"><a href="/">Home</a></li>
                     <li>
                         {% block breadcrumb_link %}
-                        <a href="account">{% endblock breadcrumb_link %}
-                    {% block breadcrumb_name %} Account {% endblock breadcrumb_name %}
-                    </h3>
-                    </a>
+                        <a href="/catalog">{% endblock breadcrumb_link %}
+                        {% block breadcrumb_name %} shop  {% endblock breadcrumb_name %}</h3>
+                        </a>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
 </div>
+{% endif %}{% endfor %}{% endfor %}
 <!--Breadcrumb Area ends-->
 <!--My account Dashboard starts-->
 <section class="my-account-section">
@@ -88,7 +89,7 @@
                                                         <tr>
                                                             <td class="plantmore-product-thumbnail">
                                                                 {% for img in item.product.product_image.all %}{% if img.is_active %}
-                                                                <img src="{{ img.image.url}}" alt="..."> {% endif %}{% endfor %}
+                                                                <img src="{{ img.shop_image.url}}" alt="..."> {% endif %}{% endfor %}
                                                             </td>
                                                             <td class="plantmore-product-name"><a href="/account">{{item.product|title}}</a>
                                                                 <p>Size: <span class="text-light">{{item.product.size}}</span></p>
