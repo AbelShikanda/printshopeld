@@ -6,9 +6,7 @@ import base64
 
 
 class MpesaC2bCredential:
-    consumer_key = 'fWA5jGTAOJ3rzvmT8fapcTTHKrKfx8xA'   # consumer key of app created in safaricom daraja website
-    consumer_secret = 'JUARLg2OzN4J00RI'    # the apps consumer secret
-    api_URL = ' https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+    #secret keys for printshop and django
 
 # class MpesaAccessToken:
 #     r = requests.get(
